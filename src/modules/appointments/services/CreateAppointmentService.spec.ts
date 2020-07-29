@@ -1,10 +1,12 @@
 import AppError from '@shared/errors/AppError';
 
 import FakeNotificatopnsRepository from '@modules/notifications/repositories/fakes/FakeNotificationsRepository';
+import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeAppointmentsRepository from '../repositories/fakes/FakeAppointmentsRepository';
 import CreateAppointmentService from './CreateAppointmentService';
 
 let fakeNotificatopnsRepository: FakeNotificatopnsRepository;
+let fakeCacheProvider: FakeCacheProvider;
 let fakeAppointmentsRepository: FakeAppointmentsRepository;
 let createAppointment: CreateAppointmentService;
 
@@ -12,9 +14,11 @@ describe('CreateAppointment', () => {
   beforeEach(() => {
     fakeNotificatopnsRepository = new FakeNotificatopnsRepository();
     fakeAppointmentsRepository = new FakeAppointmentsRepository();
+    fakeCacheProvider = new FakeCacheProvider();
     createAppointment = new CreateAppointmentService(
       fakeAppointmentsRepository,
       fakeNotificatopnsRepository,
+      fakeCacheProvider,
     );
   });
   it('should be able to create a new apppointment', async () => {
