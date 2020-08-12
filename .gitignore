@@ -3,9 +3,9 @@ node_modules
 .env
 coverage
 build/
-dist/
 temp/
 tmp/*
 !tmp/.gitkeep
 ormconfig.json
+dist
 
