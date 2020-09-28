@@ -1,65 +1,122 @@
-# reuperação de senha
-**RF (Requisitos funcionais)**
+# 🧔🏼 Go:Barber Backend (Nodejs. Express.js Typescript)
 
-- O usuário deve poder recuperar sua senha informando seu email;
-- O usuário deve receber email com instruções de recuperação;
-- Usuário deve poder resetar sua senha;
+## 💇🏻‍♂️ About the project
 
-**RNF (Requisitos não funcionais)**
+This api provides everything needed to organize appointments between the barbers and customers.
 
-- Utilizar mailtrap para testar envios em ambiente de dev;
-- Utilizar o Amazon SES para envios em produção;
-- O envio de emails deve acontecer em segundo plano (background job);
+Customers can choose the best time available to them.
 
-**RN (Requisitos de negócio)**
+Providers can see all their appointments, manage the times, also see if one client canceled the schedule.
 
-- O link enviado por email por email para resetar senha deve expirar em 2 horas;
-- O usuário precisa confirmar a nova senha ao resetar a sua senha;
-# atualização do perfil
+To see the **web client**, click here: [GoBarber Web](https://github.com/jhortale/gobarber-web)<br />
+To see the **mobile client**, click here: [GoBarber Mobile](https://github.com/jhortale/gobarber-mobile)
 
-**RF**
+## 🚀 Technologies
 
-- Usuáriod eve pode atualizar seu perfil (email, nome e senha)
+Technologies that I used to develop this api
 
-**RNF**
+- [Node.js](https://nodejs.org/en/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Express](https://expressjs.com/pt-br/)
+- [Multer](https://github.com/expressjs/multer)
+- [TypeORM](https://typeorm.io/#/)
+- [JWT-token](https://jwt.io/)
+- [uuid v4](https://github.com/thenativeweb/uuidv4/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [Date-fns](https://date-fns.org/)
+- [Jest](https://jestjs.io/)
+- [SuperTest](https://github.com/visionmedia/supertest)
+- [Eslint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [EditorConfig](https://editorconfig.org/)
 
+## 💻 Getting started
 
-**RN**
+Import the `Insomnia.json` on Insomnia App or click on [Run in Insomnia](#insomniaButton) button
 
-- O usuário não pode alterar seu email para um email já utilizado;
-- para atualizar sua senha o usuário deve informar a senha antiga;
-- Para atualizar sua senha o usuário precisa confirmar a nova senha;
-# painel do prestador
+### Requirements
 
-**RF**
-- O usuário deve poder listar bseus agendamentos de um dia específico.
-- O prestador deve receber uma noticifação sempre que houver um novo agendamento;
-- O prestador deve poder visualizar as notificações não lidas;
+- [Node.js](https://nodejs.org/en/)
+- [Yarn](https://classic.yarnpkg.com/) or [npm](https://www.npmjs.com/)
+- One instance of [PostgreSQL](https://www.postgresql.org/)
 
-**RNF**
+> Obs.: I recommend use docker
 
-- os agendamento do prestador no dia, deve ser armazenados em cache;
-- as notificação do prestador deve ser armazenadas no MongoDB;
-- as notificações do prestador, devem ser enviados em tempo-real utilizando Socket.io;
+**Clone the project and access the folder**
 
-**RN**
+```bash
+$ git clone https://github.com/EliasGcf/gobarber-api.git && cd gobarber-api
+```
 
-- A notificação deve ter um status de lida ou não lida. para que o prestador possa controlar;
-# agendamenmto de serviços
+**Follow the steps below**
 
-**RF**
+```bash
+# Install the dependencies
+$ yarn
 
-- O usário deve poder listar todos prestadores de serviços cadastrados;
-- O usuário deve poder listar todos os dias de um mês com pelo menos um horário disponível de um prestador;
-- O usuário deve poder listar os horários disponiveis de um dia específico de um prestador.
-- O usuário deve poder realizar um novo agendamento com um prestador;
+# Make a copy of '.env.example' to '.env'
+# and set with YOUR environment variables.
+# The aws variables do not need to be filled for dev environment
+$ cp .env.example .env
 
-**RNF**
--  A listada de prestadores deve ser armazenada em cache;
+# Create the instance of postgreSQL using docker
+$ docker run --name gobarber-postgres -e POSTGRES_USER=docker \
+              -e POSTGRES_DB=gobarber -e POSTGRES_PASSWORD=docker \
+              -p 5432:5432 -d postgres
 
-**RN**
-- Cada agendamento deve duara 1h exatamente;
-- os agendamentos deve estar disponíveis entre 8h e 18h (primei;ro as 8 e último as 17h);
-- O usuário não pode agendar em um horário já ocupado;
-- O usuário não pode agendar em um hoirário que já passou;
-- O usuário não pode agendar serviços consigo mesmo;
+# Create the instance of mongoDB using docker
+$ docker run --name gobarber-mongodb -p 27017:27017 -d -t mongo
+
+# Create the instance of redis using docker
+$ docker run --name gobarber-redis -p 6379:6379 -d -t redis:alpine
+
+# Make a copy of 'ormconfig.example.json' to 'ormconfig.json'
+# and set the values, if they are not filled,
+# to connect with docker database containers
+$ cp ormconfig.example.json ormconfig.json
+
+# Once the services are running, run the migrations
+$ yarn typeorm migration:run
+
+# To finish, run the api service
+$ yarn dev:server
+
+# Well done, project is started!
+```
+
+## 🤔 How to contribute
+
+**Make a fork of this repository**
+
+```bash
+# Fork using GitHub official command line
+# If you don't have the GitHub CLI, use the web site to do that.
+
+$ gh repo fork EliasGcf/gobarber-api
+```
+
+**Follow the steps below**
+
+```bash
+# Clone your fork
+$ git clone your-fork-url && cd gobarber-api
+
+# Create a branch with your feature
+$ git checkout -b my-feature
+
+# Make the commit with your changes
+$ git commit -m 'feat: My new feature'
+
+# Send the code to your remote branch
+$ git push origin my-feature
+```
+
+After your pull request is merged, you can delete your branch
+
+## 📝 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+---
+
+Made with 💜 &nbsp;by Elias Gabriel 👋 &nbsp;[See my linkedin](https://www.linkedin.com/in/eliasgcf/)
