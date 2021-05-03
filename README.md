@@ -43,7 +43,7 @@ Technologies that I used to develop this api
 **Clone the project and access the folder**
 
 ```bash
-$ git clone https://github.com/jhortale/gobarber-api.git && cd gobarber-api
+$ git clone git@github.com:jhortale/gobarber-backend.git.git && cd gobarber-backend
 ```
 
 **Follow the steps below**
